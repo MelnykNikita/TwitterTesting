@@ -60,4 +60,13 @@ public abstract class AbstractPage<T extends AbstractPage<T>> {
         }
         return false;
     }
+
+    public boolean isElementDisplayed(WebElement element) {
+        try {
+            return wait.until(ExpectedConditions.visibilityOf(element)).isDisplayed();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

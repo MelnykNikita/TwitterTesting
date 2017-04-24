@@ -32,7 +32,8 @@ public class LoginPage extends AbstractPage<LoginPage> {
     }
 
     @Step
-    public void submit() {
-        this.buttonSubmit.click();
+    public AccountPage submit() {
+        clickElement(this.buttonSubmit);
+        return new AccountPage(driver);
     }
 }
