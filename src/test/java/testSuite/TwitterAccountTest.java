@@ -53,6 +53,7 @@ public class TwitterAccountTest extends BaseTest {
     @Test(dependsOnMethods = {"verifyLoginIntoSystem"})
     public void verifyRetweetOfPosts() {
         getDriver().get(LINK_TO_F1);
+        // forEach for elements
 
     }
 
