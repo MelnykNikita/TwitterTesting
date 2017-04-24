@@ -1,4 +1,4 @@
 package testSuite;
 
-public class TwitterAccountTest {
+public class TwitterAccountTest extends BaseTest {
 }
