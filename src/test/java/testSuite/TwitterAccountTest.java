@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AccountPage;
+import pages.Formula1Page;
 import pages.LoginPage;
 import ru.yandex.qatools.allure.annotations.Features;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -21,9 +22,11 @@ public class TwitterAccountTest extends BaseTest {
 
     private LoginPage loginPage;
     private AccountPage accountPage;
+    private Formula1Page formula1Page;
 
     private final String CHROME = "CHROME";
-    private final String LINK = "http://twitter.com/";
+    private final String LINK_TO_TWITTER = "http://twitter.com/";
+    private final String LINK_TO_F1 = "http://twitter.com/f1";
 
     @BeforeClass
     public void setUpDriver() {
@@ -46,10 +49,18 @@ public class TwitterAccountTest extends BaseTest {
         Assert.assertTrue(accountPage.isElementDisplayed(accountPage.getHomeLink()));
     }
 
+    @TestCaseId("Test-2")
+    @Test(dependsOnMethods = {"verifyLoginIntoSystem"})
+    public void verifyRetweetOfPosts() {
+        getDriver().get(LINK_TO_F1);
+
+    }
+
     @Step
     private void setPreconditions() {
-        getDriver().get(LINK);
+        getDriver().get(LINK_TO_TWITTER);
         loginPage = new LoginPage(getDriver());
         accountPage = new AccountPage(getDriver());
+        formula1Page = new Formula1Page(getDriver());
     }
 }
