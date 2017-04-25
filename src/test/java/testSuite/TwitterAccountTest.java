@@ -53,7 +53,9 @@ public class TwitterAccountTest extends BaseTest {
     @Test(dependsOnMethods = {"verifyLoginIntoSystem"})
     public void verifyRetweetOfPosts() {
         getDriver().get(LINK_TO_F1);
-        // forEach for elements
+        formula1Page.retweetPost();
+        getDriver().get("http://twitter.com/");
+        Assert.assertTrue(getDriver().getCurrentUrl().equalsIgnoreCase("https://twitter.com"));
 
     }
 

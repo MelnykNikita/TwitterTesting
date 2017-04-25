@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -11,11 +12,13 @@ public abstract class AbstractPage<T extends AbstractPage<T>> {
 
     protected static WebDriver driver;
     protected WebDriverWait wait;
+    protected JavascriptExecutor javascriptExecutor;
     protected int maxTimeWait = 10;
 
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, maxTimeWait);
+        this.javascriptExecutor = (JavascriptExecutor) driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -68,5 +71,9 @@ public abstract class AbstractPage<T extends AbstractPage<T>> {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public void scrollToElement(WebElement element) {
+        javascriptExecutor.executeScript("window.scrollTo(0," + element.getLocation().y + ")");
     }
 }
