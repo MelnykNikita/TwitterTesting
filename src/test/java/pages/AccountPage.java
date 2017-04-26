@@ -10,6 +10,8 @@ public class AccountPage extends AbstractPage<AccountPage> {
 
     @FindBy(how = How.XPATH, using = "//*[@id='global-nav-home']")
     private WebElement homeLink;
+    @FindBy(how = How.XPATH, using ="//*[@id='page-container']/div[1]/div[1]/div/div[3]/ul/li/a/span[2]")
+    private WebElement numberOfTweets;
 
     public AccountPage(WebDriver driver) {
         super(driver);
@@ -29,6 +31,10 @@ public class AccountPage extends AbstractPage<AccountPage> {
                 .findElement(new By.ByXPath(".//a/span[1]")).click();*/
         //homeLink.click();
         return this;
+    }
+
+    public String getNumberOfTweets() {
+        return numberOfTweets.getText();
     }
 
 }

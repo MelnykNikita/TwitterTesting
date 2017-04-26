@@ -25,6 +25,7 @@ public class TwitterAccountTest extends BaseTest {
     private Formula1Page formula1Page;
 
     private final String CHROME = "CHROME";
+    private final String FIREFOX = "FIREFOX";
     private final String LINK_TO_TWITTER = "http://twitter.com/";
     private final String LINK_TO_F1 = "http://twitter.com/f1";
 
@@ -54,9 +55,9 @@ public class TwitterAccountTest extends BaseTest {
     public void verifyRetweetOfPosts() {
         getDriver().get(LINK_TO_F1);
         formula1Page.retweetPost();
-        getDriver().get("twitter.com");
-        accountPage.clickHomeLink();
-        Assert.assertTrue(getDriver().getCurrentUrl().contains("twitter.com"));
+        getDriver().get(LINK_TO_TWITTER);
+        Assert.assertTrue(!new String("0").contains(accountPage.getNumberOfTweets()));
+        //Assert.assertTrue(getDriver().getCurrentUrl().contains("twitter.com"));
 
     }
 
