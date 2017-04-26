@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -45,6 +46,7 @@ public abstract class AbstractPage<T extends AbstractPage<T>> {
     }
 
     public void clickElement(WebElement webElement) {
+        //waitForVisibilityOfElement(webElement);
         waitForElementToBeClickable(webElement);
         webElement.click();
     }
@@ -74,6 +76,23 @@ public abstract class AbstractPage<T extends AbstractPage<T>> {
     }
 
     public void scrollToElement(WebElement element) {
-        javascriptExecutor.executeScript("window.scrollTo(0," + element.getLocation().y + ")");
+        javascriptExecutor.executeScript
+                ("window.scrollTo(0" + "," + element.getLocation().x + ")");
+    }
+
+    public T waitForPageLoad() {
+        ExpectedCondition<Boolean> pageLoadCondition = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
+            }
+        };
+        wait.until(pageLoadCondition);
+        return (T) this;
+    }
+
+    protected WebElement scrollToElement(WebElement element, boolean isIntoView) {
+        javascriptExecutor
+                .executeScript(String.format("arguments[0].scrollIntoView(%b);", isIntoView), element);
+        return element;
     }
 }

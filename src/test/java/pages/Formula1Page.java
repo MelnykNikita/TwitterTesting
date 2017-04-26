@@ -14,16 +14,18 @@ import java.time.Month;
 import java.time.Period;
 import java.util.List;
 
-public class Formula1Page extends AbstractPage<Formula1Page> {
+public class Formula1Page extends AbstractPage<AccountPage> {
 
     @FindBy(how = How.XPATH, using = "//li[contains(@id, 'stream-item-tweet')]")
     private List<WebElement> listWithTweetItems;
     @FindBy(how = How.XPATH, using = "//li[contains(@id, 'stream-item-tweet')]//button[1]")
     private WebElement buttonRetweet;
-    @FindBy(how = How.XPATH, using = "//*[@id=\"retweet-tweet-dialog-dialog\"]/div[2]/form/div[2]/div[3]/button")
+    @FindBy(how = How.XPATH, using = "//*[@id=\"retweet-tweet-dialog-dialog\"]")
+    private WebElement retweetDialog;
+    @FindBy(how = How.XPATH, using = ".//form/div[2]/div[3]/button")
     private WebElement buttonRetweetOnDialog;
 
-    private By buttonRetweetLocator = new By.ByXPath(".//div[2]/div[2]/button[1]");
+    private By buttonRetweetLocator = new By.ByXPath(".//div[2]/div[2]/button[1]/div[1]");
 
     public Formula1Page(WebDriver driver) {
         super(driver);
@@ -40,23 +42,27 @@ public class Formula1Page extends AbstractPage<Formula1Page> {
         for (int i = 0; i < listWithTweetItems.size(); i++) {
             if (listWithTweetItems.get(i) != null)
             {
-                scrollToElement(buttonRetweet);
+                scrollToElement(buttonRetweet, true);
                 System.out.println("Scroll to Element");
 
-                LocalDate date = LocalDate.from(LocalDateTime.of(2017, Month.APRIL,23,13, 58));
+                LocalDate date = LocalDate.from(LocalDateTime.of(2017, Month.APRIL,25,21, 0));
 
                 Timestamp timestamp = getTweetTimestamp(listWithTweetItems.get(i));
-                LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
-                System.out.println(timestamp);
+                LocalDate dateOfTweet = timestamp.toLocalDateTime().toLocalDate();
+                System.out.println("date of tweet => " + timestamp);
 
-                Period period = Period.between(date, localDate);
+                Period period = Period.between(date, dateOfTweet);
+                System.out.println("period => " + period.getDays());
 
-                if (!period.isNegative()) {
+                // find tweets and making retweets for the last days(period)
+                if (period.getDays() >= 1) {
                     clickElement(listWithTweetItems.get(i).findElement(buttonRetweetLocator));
                     System.out.println("click ON button Retweet is done...");
 
-                    clickElement(buttonRetweetOnDialog);
+                    //*[@id="retweet-tweet-dialog-dialog"]/div[2]/form/div[2]/div[3]/button/span[1]/span
+                    retweetDialog.findElement(new By.ByXPath(".//form/div[2]/div[3]/button/span[1]/span")).click();
                     System.out.println("click ON buttonRetweetOnDialog is done...");
+
                 } else {
                     System.out.println("Ending...");
                     break;

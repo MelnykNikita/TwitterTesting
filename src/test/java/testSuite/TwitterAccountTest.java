@@ -54,8 +54,9 @@ public class TwitterAccountTest extends BaseTest {
     public void verifyRetweetOfPosts() {
         getDriver().get(LINK_TO_F1);
         formula1Page.retweetPost();
-        getDriver().get("http://twitter.com/");
-        Assert.assertTrue(getDriver().getCurrentUrl().equalsIgnoreCase("https://twitter.com"));
+        getDriver().get("twitter.com");
+        accountPage.clickHomeLink();
+        Assert.assertTrue(getDriver().getCurrentUrl().contains("twitter.com"));
 
     }
 
