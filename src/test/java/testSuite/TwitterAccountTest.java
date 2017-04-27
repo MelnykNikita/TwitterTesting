@@ -57,8 +57,8 @@ public class TwitterAccountTest extends BaseTest {
         formula1Page.retweetPost();
         getDriver().get(LINK_TO_TWITTER);
         Assert.assertTrue(!new String("0").contains(accountPage.getNumberOfTweets()));
-        //Assert.assertTrue(getDriver().getCurrentUrl().contains("twitter.com"));
 
+        //Integer.parseInt(accountPage.getNumberOfTweets()) != 0
     }
 
     @Step
