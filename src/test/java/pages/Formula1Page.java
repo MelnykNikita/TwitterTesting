@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.sql.Timestamp;
@@ -18,14 +17,12 @@ public class Formula1Page extends AbstractPage<AccountPage> {
 
     @FindBy(xpath = "//li[contains(@id, 'stream-item-tweet')]/div")
     private List<WebElement> listWithTweetItems;
-    @FindBy(how = How.XPATH, using = "//li[contains(@id, 'stream-item-tweet')]//button[1]")
+    @FindBy(css = "button[data-modal='ProfileTweet-retweet']")
     private WebElement buttonRetweet;
-    @FindBy(how = How.ID, using = "retweet-tweet-dialog-dialog")
-    private WebElement retweetDialog;
-    @FindBy(how = How.XPATH, using = ".//form/div[2]/div[3]/button")
+    @FindBy(css = "button[class='btn primary-btn retweet-action']")
     private WebElement buttonRetweetOnDialog;
 
-    private By buttonRetweetLocator = new By.ByXPath(".//div[2]/div[2]/button[1]/div[1]");
+    private By buttonRetweetLocator = new By.ByCssSelector("button[data-modal='ProfileTweet-retweet']");
 
     public Formula1Page(WebDriver driver) {
         super(driver);
@@ -45,7 +42,7 @@ public class Formula1Page extends AbstractPage<AccountPage> {
                 scrollToElement(buttonRetweet, false);
                 System.out.println("Scroll to Element");
 
-                LocalDate date = LocalDate.from(LocalDateTime.of(2017, Month.APRIL,25,21, 0));
+                LocalDate date = LocalDate.from(LocalDateTime.of(2017, Month.MAY,03,22, 0));
 
                 Timestamp timestamp = getTweetTimestamp(listWithTweetItems.get(i));
                 LocalDate dateOfTweet = timestamp.toLocalDateTime().toLocalDate();
@@ -61,8 +58,7 @@ public class Formula1Page extends AbstractPage<AccountPage> {
 
                     System.out.println("click ON button Retweet is done...");
 
-                    retweetDialog.findElement
-                            (new By.ByXPath(".//div[2]/form/div[2]/div[3]")).click();
+                    clickElement(buttonRetweetOnDialog);
                     System.out.println("click ON buttonRetweetOnDialog is done...");
 
                 } else {
