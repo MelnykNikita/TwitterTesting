@@ -2,8 +2,6 @@ package testSuite;
 
 import dataProvider.DataProviderSource;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.AccountPage;
@@ -24,20 +22,8 @@ public class TwitterAccountTest extends BaseTest {
     private AccountPage accountPage;
     private Formula1Page formula1Page;
 
-    private final String CHROME = "CHROME";
-    private final String FIREFOX = "FIREFOX";
     private final String LINK_TO_TWITTER = "http://twitter.com/";
     private final String LINK_TO_F1 = "http://twitter.com/f1";
-
-    @BeforeClass
-    public void setUpDriver() {
-        super.setUpDriver(CHROME);
-    }
-
-    @AfterClass
-    public void quitDriver() {
-        super.quitDriver();
-    }
 
     @TestCaseId("Test-1")
     @Test(dataProvider = "user1", dataProviderClass = DataProviderSource.class)

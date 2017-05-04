@@ -1,17 +1,24 @@
 package testSuite;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import webDriverFactory.WebDrivers;
 
 public abstract class BaseTest {
 
     private static WebDriver driver;
 
-    public void setUpDriver(String webDriverName) {
-        driver = WebDrivers.getDriver(webDriverName);
+    private final String CHROME = "CHROME";
+    private final String FIREFOX = "FIREFOX";
+
+    @BeforeClass
+    public void setUpDriver() {
+        driver = WebDrivers.getDriver(CHROME);
         driver.manage().window().maximize();
     }
 
+    @AfterClass
     public void quitDriver() {
         driver.quit();
     }

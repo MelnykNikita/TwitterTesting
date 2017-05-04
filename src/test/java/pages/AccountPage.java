@@ -23,13 +23,8 @@ public class AccountPage extends AbstractPage<AccountPage> {
 
     @Step
     public AccountPage clickHomeLink() {
-        //clickElement(homeLink);
         scrollToElement(homeLink);
         homeLink.click();
-        /*getDriver().findElement
-                (new By.ByXPath("/*//*[@id='global-nav-home']"))
-                .findElement(new By.ByXPath(".//a/span[1]")).click();*/
-        //homeLink.click();
         return this;
     }
 

@@ -16,11 +16,8 @@ import java.util.List;
 
 public class Formula1Page extends AbstractPage<AccountPage> {
 
-    @FindBy(how = How.XPATH, using = "//li[contains(@id, 'stream-item-tweet')]/div")
+    @FindBy(xpath = "//li[contains(@id, 'stream-item-tweet')]/div")
     private List<WebElement> listWithTweetItems;
-
-    //div[2]/div[6]/div[2]/div[2]/button[1]
-
     @FindBy(how = How.XPATH, using = "//li[contains(@id, 'stream-item-tweet')]//button[1]")
     private WebElement buttonRetweet;
     @FindBy(how = How.ID, using = "retweet-tweet-dialog-dialog")
@@ -59,16 +56,13 @@ public class Formula1Page extends AbstractPage<AccountPage> {
 
                 // find tweets and making retweets for the last days(period)
                 if (period.getDays() >= 1) {
-                    //clickElement(listWithTweetItems.get(i).findElement(buttonRetweetLocator));
 
                     clickElement(listWithTweetItems.get(i).findElement(buttonRetweetLocator));
-                    //listWithTweetItems.get(i).findElement(buttonRetweetLocator).click();
+
                     System.out.println("click ON button Retweet is done...");
 
-                    //*[@id="retweet-tweet-dialog-dialog"]/div[2]/form/div[2]/div[3]/button/span[1]/span
                     retweetDialog.findElement
                             (new By.ByXPath(".//div[2]/form/div[2]/div[3]")).click();
-                    //*[@id="retweet-tweet-dialog-dialog"]/div[2]/form/div[2]/div[3]
                     System.out.println("click ON buttonRetweetOnDialog is done...");
 
                 } else {
