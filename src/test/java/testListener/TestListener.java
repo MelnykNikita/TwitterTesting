@@ -1,6 +1,5 @@
 package testListener;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.ITestResult;
@@ -8,17 +7,10 @@ import org.testng.TestListenerAdapter;
 import pages.AbstractPage;
 import ru.yandex.qatools.allure.annotations.Attachment;
 
-import java.io.File;
-import java.io.IOException;
-
 public class TestListener extends TestListenerAdapter {
     @Override
     public void onTestFailure(ITestResult tr) {
-        try {
-            FileUtils.writeByteArrayToFile(new File("target/screenshots/Screenshot.png"), attachScreenshot());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        attachScreenshot();
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")

@@ -15,22 +15,18 @@ import java.util.List;
 
 public class Formula1Page extends AbstractPage<AccountPage> {
 
-    @FindBy(xpath = "//li[contains(@id, 'stream-item-tweet')]/div")
+    @FindBy(css = "li[id*='stream-item-tweet']")
     private List<WebElement> listWithTweetItems;
     @FindBy(css = "button[data-modal='ProfileTweet-retweet']")
     private WebElement buttonRetweet;
-    @FindBy(css = "button[class='btn primary-btn retweet-action']")
+    @FindBy(css = "button[class*='retweet-action']")
     private WebElement buttonRetweetOnDialog;
 
     private By buttonRetweetLocator = new By.ByCssSelector("button[data-modal='ProfileTweet-retweet']");
+    private By timestampLocator = new By.ByXPath(".//span[contains(@class,'_timestamp')]");
 
     public Formula1Page(WebDriver driver) {
         super(driver);
-    }
-
-    public RetweetPage clickOnButtonRetweet() {
-        clickElement(buttonRetweet);
-        return new RetweetPage(driver);
     }
 
     @Step
@@ -42,9 +38,10 @@ public class Formula1Page extends AbstractPage<AccountPage> {
                 scrollToElement(buttonRetweet, false);
                 System.out.println("Scroll to Element");
 
-                LocalDate date = LocalDate.from(LocalDateTime.of(2017, Month.MAY,03,22, 0));
+                LocalDate date = LocalDate.from(LocalDateTime.of
+                        (2017, Month.MAY,03,23, 55));
 
-                Timestamp timestamp = getTweetTimestamp(listWithTweetItems.get(i));
+                Timestamp timestamp = getTweetTimestamp(listWithTweetItems.get(i), timestampLocator);
                 LocalDate dateOfTweet = timestamp.toLocalDateTime().toLocalDate();
                 System.out.println("date of tweet => " + timestamp);
 
@@ -55,9 +52,9 @@ public class Formula1Page extends AbstractPage<AccountPage> {
                 if (period.getDays() >= 1) {
 
                     clickElement(listWithTweetItems.get(i).findElement(buttonRetweetLocator));
-
                     System.out.println("click ON button Retweet is done...");
 
+                    scrollToElement(buttonRetweetOnDialog, true);
                     clickElement(buttonRetweetOnDialog);
                     System.out.println("click ON buttonRetweetOnDialog is done...");
 
@@ -69,9 +66,9 @@ public class Formula1Page extends AbstractPage<AccountPage> {
         }
     }
 
-    public Timestamp getTweetTimestamp(WebElement tweet)
+    public Timestamp getTweetTimestamp(WebElement tweet, By timestampLocator)
     {
-        WebElement timestampElement = tweet.findElement(By.xpath(".//span[contains(@class,'_timestamp')]"));
+        WebElement timestampElement = tweet.findElement(timestampLocator);
         return new Timestamp(Long.parseLong(timestampElement.getAttribute("data-time-ms")));
     }
 

@@ -14,11 +14,11 @@ public abstract class AbstractPage<T extends AbstractPage<T>> {
     protected static WebDriver driver;
     protected WebDriverWait wait;
     protected JavascriptExecutor javascriptExecutor;
-    protected int maxTimeWait = 10;
+    protected final static int MAX_TIME_WAIT = 10;
 
     protected AbstractPage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, maxTimeWait);
+        this.wait = new WebDriverWait(driver, MAX_TIME_WAIT);
         this.javascriptExecutor = (JavascriptExecutor) driver;
         PageFactory.initElements(driver, this);
     }
@@ -46,12 +46,11 @@ public abstract class AbstractPage<T extends AbstractPage<T>> {
     }
 
     public void clickElement(WebElement webElement) {
-        //waitForVisibilityOfElement(webElement);
         waitForElementToBeClickable(webElement);
         webElement.click();
     }
 
-    public void inputData(WebElement webElement, String data) {
+    public void typeDataInField(WebElement webElement, String data) {
         waitForVisibilityOfElement(webElement);
         webElement.clear();
         webElement.sendKeys(data);

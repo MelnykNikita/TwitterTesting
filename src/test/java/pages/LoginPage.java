@@ -21,13 +21,13 @@ public class LoginPage extends AbstractPage<LoginPage> {
 
     @Step
     public LoginPage inputEmail(String email) {
-        inputData(this.emailPlaceholder, email);
+        typeDataInField(this.emailPlaceholder, email);
         return this;
     }
 
     @Step
     public LoginPage inputPassword(String password) {
-        inputData(this.passwordPlaceholder, password);
+        typeDataInField(this.passwordPlaceholder, password);
         return this;
     }
 

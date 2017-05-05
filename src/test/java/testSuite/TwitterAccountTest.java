@@ -33,7 +33,8 @@ public class TwitterAccountTest extends BaseTest {
                 .inputEmail(email)
                 .inputPassword(password)
                 .submit();
-        Assert.assertTrue(accountPage.isElementDisplayed(accountPage.getHomeLink()));
+        Assert.assertTrue(accountPage.isElementDisplayed(accountPage.getHomeLink()),
+                "Account Page is not displayed...");
     }
 
     @TestCaseId("Test-2")
@@ -42,9 +43,11 @@ public class TwitterAccountTest extends BaseTest {
         getDriver().get(LINK_TO_F1);
         formula1Page.retweetPost();
         getDriver().get(LINK_TO_TWITTER);
-        Assert.assertTrue(!new String("0").contains(accountPage.getNumberOfTweets()));
+        int numberOfTweets = Integer.parseInt(accountPage.getNumberOfTweets());
+        System.out.println("Number Of Tweets => " + numberOfTweets);
 
-        //Integer.parseInt(accountPage.getNumberOfTweets()) != 0
+        Assert.assertTrue(numberOfTweets != 0,
+                "There are no retweets on the page...");
     }
 
     @Step
