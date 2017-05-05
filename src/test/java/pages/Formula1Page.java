@@ -66,9 +66,10 @@ public class Formula1Page extends AbstractPage<AccountPage> {
         }
     }
 
-    public Timestamp getTweetTimestamp(WebElement tweet, By timestampLocator)
+    @Step
+    public Timestamp getTweetTimestamp(WebElement element, By timestampLocator)
     {
-        WebElement timestampElement = tweet.findElement(timestampLocator);
+        WebElement timestampElement = element.findElement(timestampLocator);
         return new Timestamp(Long.parseLong(timestampElement.getAttribute("data-time-ms")));
     }
 

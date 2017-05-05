@@ -7,7 +7,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class AccountPage extends AbstractPage<AccountPage> {
 
-    @FindBy(xpath = "//*[@id='global-nav-home']")
+    @FindBy(css = "#global-nav-home")
     private WebElement homeLink;
     @FindBy(css ="span[class='ProfileCardStats-statValue']")
     private WebElement numberOfTweets;
@@ -22,12 +22,14 @@ public class AccountPage extends AbstractPage<AccountPage> {
 
     @Step
     public AccountPage clickHomeLink() {
-        scrollToElement(homeLink);
+        scrollToElement(homeLink, true);
         homeLink.click();
         return this;
     }
 
+    @Step
     public String getNumberOfTweets() {
+        waitForVisibilityOfElement(numberOfTweets);
         return numberOfTweets.getText();
     }
 
