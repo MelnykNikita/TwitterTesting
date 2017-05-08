@@ -39,7 +39,7 @@ public class Formula1Page extends AbstractPage<AccountPage> {
                 System.out.println("Scroll to Element");
 
                 LocalDate date = LocalDate.from(LocalDateTime.of
-                        (2017, Month.MAY,03,23, 55));
+                        (2017, Month.MAY,06,23, 55));
 
                 Timestamp timestamp = getTweetTimestamp(listWithTweetItems.get(i), timestampLocator);
                 LocalDate dateOfTweet = timestamp.toLocalDateTime().toLocalDate();
