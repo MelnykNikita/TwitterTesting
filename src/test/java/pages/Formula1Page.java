@@ -60,6 +60,7 @@ public class Formula1Page extends AbstractPage<AccountPage> {
 
                 } else {
                     System.out.println("Ending...");
+                    driver.get("https://twitter.com");
                     break;
                 }
             }
