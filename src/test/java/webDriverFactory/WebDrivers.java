@@ -15,7 +15,7 @@ public class WebDrivers {
 
         if (driverName.equalsIgnoreCase("CHROME")) {
             //ChromeDriverManager.getInstance().setup();
-            String resource = getResource("/chromedriver");
+            String resource = getResource("/usr/local/bin/chromedriver");
             System.setProperty("webdriver.chrome.driver", resource);
 
             return new ChromeDriver();
