@@ -15,7 +15,7 @@ public abstract class BaseTest {
     @BeforeClass
     public void setUpDriver() {
         driver = WebDrivers.getDriver(CHROME);
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
     }
 
     @AfterClass

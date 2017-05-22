@@ -18,6 +18,7 @@ public class WebDrivers {
             ChromeDriverManager.getInstance().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless", "--disable-gpu");
+            options.addArguments("--start-maximized");
             /*String resource = getResource("/usr/local/bin/chromedriver");
             System.setProperty("webdriver.chrome.driver", resource);*/
 
