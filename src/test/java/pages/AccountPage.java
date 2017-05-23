@@ -16,6 +16,7 @@ public class AccountPage extends AbstractPage<AccountPage> {
         super(driver);
     }
 
+    @Step
     public WebElement getHomeLink() {
         return homeLink;
     }
