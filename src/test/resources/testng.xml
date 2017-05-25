@@ -5,7 +5,6 @@
 
     <test name="test1">
         <classes>
-            <class name="testSuite.BaseTest"/>
             <class name="testSuite.TwitterAccountTest"/>
         </classes>
     </test>
