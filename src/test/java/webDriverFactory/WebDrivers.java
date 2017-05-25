@@ -1,6 +1,5 @@
 package webDriverFactory;
 
-import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,14 +14,14 @@ public class WebDrivers {
     public static WebDriver getDriver(String driverName) {
 
         if (driverName.equalsIgnoreCase("CHROME")) {
-            ChromeDriverManager.getInstance().setup();
-            ChromeOptions options = new ChromeOptions();
+            //ChromeDriverManager.getInstance().setup();
+            /*ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless", "--disable-gpu");
-            options.addArguments("--start-maximized");
-            /*String resource = getResource("/usr/local/bin/chromedriver");
-            System.setProperty("webdriver.chrome.driver", resource);*/
+            options.addArguments("--start-maximized");*/
+            String resource = getResource("/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", resource);
 
-            return new ChromeDriver(options);
+            return new ChromeDriver();
         }
         else if (driverName.equalsIgnoreCase("FIREFOX")) {
             //FirefoxDriverManager.getInstance().setup();
