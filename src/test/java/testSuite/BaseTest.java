@@ -11,10 +11,12 @@ public abstract class BaseTest {
 
     private final String CHROME = "CHROME";
     private final String FIREFOX = "FIREFOX";
+    private String browser = System.getProperty("browser");
 
     @BeforeClass
     public void setUpDriver() {
-        driver = WebDrivers.getDriver(CHROME);
+        System.out.println(browser + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        driver = WebDrivers.getDriver(browser);
         driver.manage().window().maximize();
     }
 

@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+
+        <defBrowser>FIREFOX</defBrowser>
         <mainSuite>
             ${project.basedir}${file.separator}suite${file.separator}testng.xml
         </mainSuite>
@@ -118,7 +120,7 @@
                         <suiteXmlFile>${mainSuite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
-                        <browser>chrome</browser>
+                        <browser>${defBrowser}</browser>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
