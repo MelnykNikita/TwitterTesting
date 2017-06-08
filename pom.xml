@@ -10,7 +10,7 @@
 
     <properties>
 
-        <defBrowser>CHROME</defBrowser>
+        <defBrowser>FIREFOX</defBrowser>
         <mainSuite>
             ${project.basedir}${file.separator}suite${file.separator}testng.xml
         </mainSuite>

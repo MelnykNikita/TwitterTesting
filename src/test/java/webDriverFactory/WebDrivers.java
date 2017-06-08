@@ -25,7 +25,7 @@ public class WebDrivers {
         }
         else if (driverName.equalsIgnoreCase("FIREFOX")) {
             //FirefoxDriverManager.getInstance().setup();
-            String resource = getResource("/var/lib/jenkins/workspace/Twitter/src/test/resources/geckodriver");
+            String resource = getResource("/usr/local/bin/geckodriver");
             System.setProperty("webdriver.gecko.driver", resource);
 
             return new FirefoxDriver();
