@@ -15,13 +15,13 @@ public class WebDrivers {
 
         if (driverName.equalsIgnoreCase("CHROME")) {
             //ChromeDriverManager.getInstance().setup();
-            /*ChromeOptions options = new ChromeOptions();
+            ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless", "--disable-gpu");
-            options.addArguments("--start-maximized");*/
-            String resource = getResource("/chromedriver.exe");
+            options.addArguments("--start-maximized");
+            String resource = getResource("/usr/local/bin/chromedriver");
             System.setProperty("webdriver.chrome.driver", resource);
 
-            return new ChromeDriver();
+            return new ChromeDriver(options);
         }
         else if (driverName.equalsIgnoreCase("FIREFOX")) {
             //FirefoxDriverManager.getInstance().setup();
