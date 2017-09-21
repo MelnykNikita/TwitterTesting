@@ -8,13 +8,13 @@
     <artifactId>TwitterTestingFormula1</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
+    <!--<properties>
 
         <defBrowser>FIREFOX</defBrowser>
         <mainSuite>
             ${project.basedir}${file.separator}suite${file.separator}testng.xml
         </mainSuite>
-    </properties>
+    </properties>-->
 
     <dependencies>
         <dependency>
@@ -116,12 +116,12 @@
                             <value>false</value>
                         </property>
                     </properties>
-                    <suiteXmlFiles>
+                    <!--<suiteXmlFiles>
                         <suiteXmlFile>${mainSuite}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <browser>${defBrowser}</browser>
-                    </systemPropertyVariables>
+                    </systemPropertyVariables>-->
                 </configuration>
                 <dependencies>
                     <dependency>

@@ -11,7 +11,8 @@ public abstract class BaseTest {
 
     private final String CHROME = "CHROME";
     private final String FIREFOX = "FIREFOX";
-    private String browser = System.getProperty("browser");
+    //private String browser = System.getProperty("browser");
+    private String browser = CHROME;
 
     @BeforeClass
     public void setUpDriver() {
