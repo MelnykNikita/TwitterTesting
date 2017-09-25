@@ -50,4 +50,6 @@ public class TwitterAccountTest extends BaseTest {
         Assert.assertTrue(numberOfTweets != 0,
                 "There are no retweets on the page...");
     }
+
+
 }
