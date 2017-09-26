@@ -53,9 +53,16 @@ public class LiveraTest extends BaseTest {
             jsexecutor.executeScript("document.querySelectorAll(\".elSubNavItemLinks-item-url\")[" + i + "].click();");
             Thread.sleep(1000);
             try {
-                brandName = driver.findElement(By.xpath("//span[.='Merk']"));
+                product = driver.findElement(By.cssSelector(".elProductItem"));
             } catch (Exception exception) {
-                System.out.println("PAGE without Brand-Filter: " + driver.getCurrentUrl());
+
+            }
+            if (product != null) {
+                try {
+                    brandName = driver.findElement(By.xpath("//span[.='Merk']"));
+                } catch (Exception exception) {
+                    System.out.println("PAGE without Brand-Filter: " + driver.getCurrentUrl());
+                }
             }
             i++;
         }
